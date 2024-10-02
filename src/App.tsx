@@ -9,7 +9,13 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className="w-full h-[100vh] flex items-center justify-center">
+            Loading...
+          </div>
+        }
+      >
         <MainOutlet />
       </Suspense>
     ),
@@ -17,7 +23,13 @@ const router = createBrowserRouter([
       {
         index: true,
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div className="w-full h-[100vh] flex items-center justify-center">
+                Loading...
+              </div>
+            }
+          >
             <Home />
           </Suspense>
         ),
@@ -25,7 +37,13 @@ const router = createBrowserRouter([
       {
         path: 'createMusic',
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div className="w-full h-[100vh] flex items-center justify-center">
+                Loading...
+              </div>
+            }
+          >
             <CreateMusic />
           </Suspense>
         ),
@@ -33,7 +51,13 @@ const router = createBrowserRouter([
       {
         path: '/updateMusic',
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div className="w-full h-[100vh] flex items-center justify-center">
+                Loading...
+              </div>
+            }
+          >
             <UpdateMusic />
           </Suspense>
         ),
