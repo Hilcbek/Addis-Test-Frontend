@@ -1,21 +1,15 @@
-import { CSSProperties, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { allMuiscsService, deleteMusicService } from '../redux/auth/musicSlice';
 import { RootState } from '../redux/reducer';
 import { MdDelete } from 'react-icons/md';
 import { BiEdit } from 'react-icons/bi';
-import { ClipLoader } from 'react-spinners';
 import { useNavigate } from 'react-router-dom';
 type musicType = {
   _id?: string;
   mname: string;
   desc: string;
   genere: string;
-};
-const override: CSSProperties = {
-  display: 'block',
-  margin: '0 auto',
-  borderColor: 'red',
 };
 type IdType = string;
 export const Home = () => {
@@ -46,14 +40,7 @@ export const Home = () => {
       } w-full gap-5 flex items-center justify-center flex-col`}
     >
       {isLoading ? (
-        <ClipLoader
-          color={'#000'}
-          loading={isLoading}
-          size={19}
-          cssOverride={override}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
+        <>Loading...</>
       ) : allMusics.length ? (
         <>
           <h1>All Musics</h1>

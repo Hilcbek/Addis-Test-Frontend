@@ -9,7 +9,7 @@ type musicType = {
   genere: string;
 };
 interface ThunkAPI {
-  rejectValue: string; // Customize this type based on what you want to return on error
+  rejectValue: string; 
 }
 type IdType = string;
 export const createMusic = createAsyncThunk<musicType, musicType, ThunkAPI>(
@@ -27,7 +27,7 @@ export const createMusic = createAsyncThunk<musicType, musicType, ThunkAPI>(
     }
   }
 );
-export const allMuiscsService = createAsyncThunk<musicType, musicType, ThunkAPI>(
+export const allMuiscsService = createAsyncThunk<musicType[], void, ThunkAPI>(
   'music/allMuisc',
   async (_, thunkApi) => {
     try {
@@ -37,26 +37,26 @@ export const allMuiscsService = createAsyncThunk<musicType, musicType, ThunkAPI>
       if (error instanceof AxiosError && error.response?.data?.error) {
         message = error.response.data.error;
       }
-      // Reject the thunk with a message
       return thunkApi.rejectWithValue(message);
     }
   }
 );
-export const updateMusicService = createAsyncThunk<musicType, musicType, ThunkAPI>(
-  'music/updateMusic',
-  async (music: musicType, thunkApi) => {
-    try {
-      return await musicServices.updateMusic(music);
-    } catch (error) {
-      let message = 'An unexpected error occurred';
-      if (error instanceof AxiosError && error.response?.data?.error) {
-        message = error.response.data.error;
-      }
-      // Reject the thunk with a message
-      return thunkApi.rejectWithValue(message);
+export const updateMusicService = createAsyncThunk<
+  musicType,
+  musicType,
+  ThunkAPI
+>('music/updateMusic', async (music: musicType, thunkApi) => {
+  try {
+    return await musicServices.updateMusic(music);
+  } catch (error) {
+    let message = 'An unexpected error occurred';
+    if (error instanceof AxiosError && error.response?.data?.error) {
+      message = error.response.data.error;
     }
+    // Reject the thunk with a message
+    return thunkApi.rejectWithValue(message);
   }
-);
+});
 export const deleteMusicService = createAsyncThunk<IdType, IdType, ThunkAPI>(
   'music/deleteMusic',
   async (id: IdType, thunkApi) => {
@@ -113,9 +113,9 @@ export const mainSlice = createSlice({
       .addCase(updateMusicService.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(updateMusicService.fulfilled, (state, action) => {
+      .addCase(updateMusicService.fulfilled, (state) => {
         state.isLoading = false;
-        toast.success(action.payload as string);
+        toast.success(`Music updated successfully!`);
       })
       .addCase(updateMusicService.rejected, (state, action) => {
         state.isLoading = false;
@@ -127,9 +127,9 @@ export const mainSlice = createSlice({
       .addCase(deleteMusicService.fulfilled, (state, action) => {
         state.isLoading = false;
         state.allMusics = state.allMusics.filter(
-          (music) => music._id !== action.payload.id
+          (music) => music._id !== action.payload
         );
-        toast.success(action.payload.msg as string);
+        toast.success('Music has been deleted!');
       })
       .addCase(deleteMusicService.rejected, (state, action) => {
         state.isLoading = false;
