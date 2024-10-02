@@ -8,8 +8,11 @@ type musicType = {
   desc: string;
   genere: string;
 };
+interface ThunkAPI {
+  rejectValue: string; // Customize this type based on what you want to return on error
+}
 type IdType = string;
-export const createMusic = createAsyncThunk(
+export const createMusic = createAsyncThunk<musicType, musicType, ThunkAPI>(
   'music/create',
   async (musicData: musicType, thunkApi) => {
     try {
@@ -24,22 +27,22 @@ export const createMusic = createAsyncThunk(
     }
   }
 );
-export const allMuiscsService = createAsyncThunk(
+export const allMuiscsService = createAsyncThunk<musicType, musicType, ThunkAPI>(
   'music/allMuisc',
   async (_, thunkApi) => {
     try {
       return await musicServices.allMusics();
     } catch (error) {
-     let message = 'An unexpected error occurred';
-     if (error instanceof AxiosError && error.response?.data?.error) {
-       message = error.response.data.error;
-     }
-     // Reject the thunk with a message
-     return thunkApi.rejectWithValue(message);
+      let message = 'An unexpected error occurred';
+      if (error instanceof AxiosError && error.response?.data?.error) {
+        message = error.response.data.error;
+      }
+      // Reject the thunk with a message
+      return thunkApi.rejectWithValue(message);
     }
   }
 );
-export const updateMusicService = createAsyncThunk(
+export const updateMusicService = createAsyncThunk<musicType, musicType, ThunkAPI>(
   'music/updateMusic',
   async (music: musicType, thunkApi) => {
     try {
@@ -54,7 +57,7 @@ export const updateMusicService = createAsyncThunk(
     }
   }
 );
-export const deleteMusicService = createAsyncThunk(
+export const deleteMusicService = createAsyncThunk<IdType, IdType, ThunkAPI>(
   'music/deleteMusic',
   async (id: IdType, thunkApi) => {
     try {
