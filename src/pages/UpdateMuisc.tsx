@@ -130,7 +130,7 @@ function UpdateMusic() {
             } text-sm text-gray-700 absolute top-4 left-3 peer-focus:scale-[.8] peer-focus:-translate-y-4 transition-all ease-linear duration-300`}
             htmlFor="password"
           >
-            Update password
+            Update Genere
           </label>
           {errors.genere && (
             <div className="flex items-center justify-start gap-1 text-rose-700">
