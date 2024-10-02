@@ -16,7 +16,7 @@ export const Home = () => {
   const { allMusics, isLoading } = useSelector(
     (state: RootState) => state.music
   );
-  const dispatch : AppDispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const fetchMuisc = useCallback(async () => {
     await dispatch(allMuiscsService());
   }, [dispatch]);
@@ -44,8 +44,11 @@ export const Home = () => {
       ) : allMusics.length ? (
         <>
           <h1>All Musics</h1>
-          <table className="w-full">
-            <thead className="bg-rose-100 text-black h-12">
+          <table
+            className="w-full border-solid border-[1px] border-gray-500"
+            style={{ borderCollapse: 'separate' }}
+          >
+            <thead className="bg-black text-white h-12">
               <tr className="w-full">
                 <th>Name</th>
                 <th>Description</th>
@@ -54,27 +57,24 @@ export const Home = () => {
                 <th></th>
               </tr>
             </thead>
-            <tbody
-              className="odd:text-sky-700 w-full"
-              style={{ borderCollapse: 'collapse' }}
-            >
+            <tbody className="odd:text-sky-700 w-full">
               {allMusics.map((music: musicType) => {
                 return (
                   <tr
                     key={music._id}
-                    className="w-full h-12 text-center odd:bg-sky-100 even:bg-rose-100"
+                    className="w-full h-12 text-center odd:bg-gray-100 even:bg-gray-400"
                   >
                     <td>{music?.mname}</td>
                     <td>{music.desc}</td>
                     <td>{music.genere}</td>
-                    <td className="text-center">
+                    <td align='center'>
                       <BiEdit
                         onClick={() => handleUpdate(music)}
                         size={20}
                         className="text-[#009866] active:[1.03] hover:scale-[.98] transition-all ease-linear cursor-pointer"
                       />
                     </td>
-                    <td className="text-center">
+                    <td align='center'>
                       <MdDelete
                         onClick={() => music?._id && handleDelete(music._id)}
                         size={20}
