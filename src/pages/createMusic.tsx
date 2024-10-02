@@ -6,6 +6,7 @@ import { createMusic } from '../redux/auth/musicSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
+import { CSSProperties } from 'react';
 const musicSchema = z.object({
   mname: z
     .string()
@@ -17,7 +18,11 @@ const musicSchema = z.object({
     .min(1, { message: "Genere can't be less than 1" })
     .max(30, { message: "Genere can't be more than 30" }),
 });
-
+const override: CSSProperties = {
+  display: 'block',
+  margin: '0 auto',
+  borderColor: 'red',
+};
 type formDataType = z.infer<typeof musicSchema>;
 
 function CreateMusic() {
@@ -134,9 +139,10 @@ function CreateMusic() {
         >
           {isSubmitting ? (
             <ClipLoader
-              color={'#fff'}
+              color={'#000'}
               loading={isSubmitting}
               size={19}
+              cssOverride={override}
               aria-label="Loading Spinner"
               data-testid="loader"
             />

@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { CSSProperties, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { allMuiscsService, deleteMusicService } from '../redux/auth/musicSlice';
 import { RootState } from '../redux/reducer';
@@ -11,6 +11,11 @@ type musicType = {
   mname: string;
   desc: string;
   genere: string;
+};
+const override: CSSProperties = {
+  display: 'block',
+  margin: '0 auto',
+  borderColor: 'red',
 };
 type IdType = string;
 export const Home = () => {
@@ -45,6 +50,7 @@ export const Home = () => {
           color={'#000'}
           loading={isLoading}
           size={19}
+          cssOverride={override}
           aria-label="Loading Spinner"
           data-testid="loader"
         />
