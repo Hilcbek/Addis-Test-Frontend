@@ -3,7 +3,6 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { BiSolidErrorCircle } from 'react-icons/bi';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ClipLoader } from 'react-spinners';
 import { useEffect } from 'react';
 import { updateMusicService } from '../redux/auth/musicSlice';
 import { useDispatch } from 'react-redux';
@@ -37,7 +36,7 @@ function UpdateMusic() {
       genere: '',
     },
   });
-  const dispatch : AppDispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const onSubmit: SubmitHandler<formDataType> = async (data: formDataType) => {
@@ -47,7 +46,7 @@ function UpdateMusic() {
         updateMusicService({ ...data, _id: location.state._id })
       );
       console.log('object');
-      if (res.meta.requestStatus === 'rejected') return
+      if (res.meta.requestStatus === 'rejected') return;
       navigate('/');
     } catch (error) {
       console.log(error);
@@ -145,17 +144,7 @@ function UpdateMusic() {
           className="p-3 bg-black active:scale-[1.02] hover:scale-[.99] transition-all ease-linear duration-200 cursor-pointer text-white rounded-md w-full"
           type="submit"
         >
-          {isSubmitting ? (
-            <ClipLoader
-              color={'#fff'}
-              loading={isSubmitting}
-              size={19}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            />
-          ) : (
-            'Update'
-          )}
+          {isSubmitting ? 'Updating...' : 'Update'}
         </button>
       </form>
     </div>

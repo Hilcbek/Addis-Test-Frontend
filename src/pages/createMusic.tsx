@@ -131,7 +131,7 @@ function CreateMusic() {
           className="p-3 bg-black active:scale-[1.02] hover:scale-[.99] transition-all ease-linear duration-200 cursor-pointer text-white rounded-md w-full"
           type="submit"
         >
-          {isSubmitting ? <>Adding...</> : 'Add'}
+          {isSubmitting ? 'Adding..' : 'Add'}
         </button>
       </form>
     </div>
