@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { allMuiscsService, deleteMusicService } from '../redux/auth/musicSlice';
-import { RootState } from '../redux/reducer';
+import { AppDispatch, RootState } from '../redux/reducer';
 import { MdDelete } from 'react-icons/md';
 import { BiEdit } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ export const Home = () => {
   const { allMusics, isLoading } = useSelector(
     (state: RootState) => state.music
   );
-  const dispatch = useDispatch();
+  const dispatch : AppDispatch = useDispatch();
   const fetchMuisc = useCallback(async () => {
     await dispatch(allMuiscsService());
   }, [dispatch]);

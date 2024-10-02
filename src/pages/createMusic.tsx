@@ -5,6 +5,7 @@ import { BiSolidErrorCircle } from 'react-icons/bi';
 import { createMusic } from '../redux/auth/musicSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { AppDispatch } from '../redux/reducer';
 const musicSchema = z.object({
   mname: z
     .string()
@@ -32,12 +33,12 @@ function CreateMusic() {
       genere: '',
     },
   });
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const onSubmit: SubmitHandler<formDataType> = async (data: formDataType) => {
     try {
       const res = await dispatch(createMusic(data));
-      if (res?.error) return;
+      if (res.meta.requestStatus === 'rejected') return;
       navigate('/');
     } catch (error) {
       console.log(error);

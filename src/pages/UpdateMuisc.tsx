@@ -7,6 +7,7 @@ import { ClipLoader } from 'react-spinners';
 import { useEffect } from 'react';
 import { updateMusicService } from '../redux/auth/musicSlice';
 import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../redux/reducer';
 const musicSchema = z.object({
   mname: z
     .string()
@@ -36,7 +37,7 @@ function UpdateMusic() {
       genere: '',
     },
   });
-  const dispatch = useDispatch();
+  const dispatch : AppDispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const onSubmit: SubmitHandler<formDataType> = async (data: formDataType) => {
@@ -46,7 +47,7 @@ function UpdateMusic() {
         updateMusicService({ ...data, _id: location.state._id })
       );
       console.log('object');
-      if (res?.error) return;
+      if (res.meta.requestStatus === 'rejected') return
       navigate('/');
     } catch (error) {
       console.log(error);
