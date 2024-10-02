@@ -88,7 +88,7 @@ export const Home = () => {
           </table>
         </>
       ) : (
-        <h1>There data found! adds some!👋</h1>
+        <h1>No data found! adds some!👋</h1>
       )}
     </div>
   );
