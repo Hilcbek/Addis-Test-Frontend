@@ -45,7 +45,7 @@ function UpdateMusic() {
       const res = await dispatch(
         updateMusicService({ ...data, _id: location.state._id })
       );
-      console.log('object')
+      console.log('object');
       if (res?.error) return;
       navigate('/');
     } catch (error) {
