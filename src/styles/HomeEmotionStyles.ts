@@ -56,7 +56,7 @@ export const PagianationContanier = styled.div`
   padding: 10px 0;
   position: fixed;
   @media (min-width: 340px) and (max-width: 700px) {
-    left: 20%;
+    left: 12%;
   }
   @media (min-width: 700px) and (max-width: 1000px) {
     left: 36%;
