@@ -40,9 +40,9 @@ function* handleCreateMusic(action: PayloadAction<Omit<Muisc, 'id'>>) {
     yield put(createMuiscSuccess(music));
   } catch (error) {
    if (error instanceof Error && (error as any).response?.data) {
-    yield put(fetchMusicFailure((error as any).response.data));
+    yield put(createMusicFailure((error as any).response.data));
   } else {
-    yield put(fetchMusicFailure("An unknown error occurred"));
+    yield put(createMusicFailure("An unknown error occurred"));
   }
   }
 }
@@ -52,9 +52,9 @@ function* handleUpdateMusic(action: PayloadAction<Omit<Muisc, 'id'>>) {
     yield put(updateMusicSuccess(music));
   } catch (error) {
    if (error instanceof Error && (error as any).response?.data) {
-    yield put(fetchMusicFailure((error as any).response.data));
+    yield put(updateMusicFailure((error as any).response.data));
   } else {
-    yield put(fetchMusicFailure("An unknown error occurred"));
+    yield put(updateMusicFailure("An unknown error occurred"));
   }
   }
 }
@@ -64,9 +64,9 @@ function* handleDeleteMusic(action: PayloadAction<string>) {
     yield put(deleteMusicSuccess(id));
   } catch (error) {
     if (error instanceof Error && (error as any).response?.data) {
-      yield put(fetchMusicFailure((error as any).response.data));
+      yield put(deleteMusicFailure((error as any).response.data));
     } else {
-      yield put(fetchMusicFailure('An unknown error occurred'));
+      yield put(deleteMusicFailure('An unknown error occurred'));
     }
   }
 }
