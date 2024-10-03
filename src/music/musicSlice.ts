@@ -25,11 +25,12 @@ export const musicSlice = createSlice({
       state.isError = false;
     },
     fetchMusicFailure: (state, action: PayloadAction<string>) => {
-      toast.error(action.payload);
       state.isLoading = false;
       state.isError = true;
+      toast.error(action.payload);
     },
-    createMusicStart: (state) => {
+    createMusicStart: (state, action: PayloadAction<Muisc>) => {
+      console.log(action.payload);
       state.isLoading = true;
     },
     createMuiscSuccess: (state, action: PayloadAction<Muisc>) => {
@@ -43,7 +44,8 @@ export const musicSlice = createSlice({
       state.isLoading = false;
       toast.error(action.payload);
     },
-    updateMusicStart: (state) => {
+    updateMusicStart: (state, action: PayloadAction<Muisc>) => {
+      console.log(action.payload);
       state.isLoading = true;
     },
     updateMusicSuccess: (state, action: PayloadAction<Muisc>) => {
@@ -62,8 +64,10 @@ export const musicSlice = createSlice({
       state.isLoading = false;
       toast.error(action.payload);
     },
-    deleteMusicStart: (state) => {
+
+    deleteMusicStart: (state, action: PayloadAction<string>) => {
       state.isLoading = true;
+      console.log(action.payload);
     },
     deleteMusicSuccess: (state, action: PayloadAction<string | undefined>) => {
       state.musics = state.musics.filter(
