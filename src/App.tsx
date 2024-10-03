@@ -45,7 +45,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <ParentComponent>
-      <Toaster position="bottom-right" toastOptions={{ duration: 3000 }} />
+      <Toaster position="bottom-right" containerStyle={{ marginBottom : 30, marginRight : 30}} toastOptions={{ duration: 3000 }} />
       <RouterProvider router={router} />
     </ParentComponent>
   );
