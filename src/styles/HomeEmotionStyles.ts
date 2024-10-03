@@ -49,12 +49,21 @@ export const TableContainer = styled.div`
   flex-direction: column;
 `;
 export const PagianationContanier = styled.div`
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
   padding: 10px 0;
+  position: fixed;
+  @media (min-width: 340px) and (max-width: 700px) {
+    left: 20%;
+  }
+  @media (min-width: 700px) and (max-width: 1000px) {
+    left: 36%;
+  }
+  @media (min-width: 1000px) and (max-width: 2100px) {
+    left: 41%;
+  }
 `;
 export const PagianationButtonContainer = styled.div`
   padding: 10px;
