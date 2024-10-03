@@ -106,7 +106,9 @@ function CreateMusic() {
         </InputLabelContainer>
         <Select {...register('genere')} id="genere" placeholder="Genere">
           {genereKeys.map((genre) => (
-            <option value={genre}>{genre}</option>
+            <option key={genre} value={genre}>
+              {genre}
+            </option>
           ))}
         </Select>
         <ButtonComponent

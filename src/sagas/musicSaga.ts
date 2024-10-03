@@ -27,7 +27,11 @@ function* handleFetchMuiscs() {
     const musics: Muisc[] = yield call(fetchMusic);
     yield put(fetchMusicSuccess(musics));
   } catch (error) {
-    yield put(fetchMusicFailure((error as Error).message));
+    if (error instanceof Error && (error as any).response?.data) {
+    yield put(fetchMusicFailure((error as any).response.data));
+  } else {
+    yield put(fetchMusicFailure("An unknown error occurred"));
+  }
   }
 }
 function* handleCreateMusic(action: PayloadAction<Omit<Muisc, 'id'>>) {
@@ -35,7 +39,11 @@ function* handleCreateMusic(action: PayloadAction<Omit<Muisc, 'id'>>) {
     const music: Muisc = yield call(createMusic, action.payload);
     yield put(createMuiscSuccess(music));
   } catch (error) {
-    yield put(createMusicFailure((error as Error).message));
+   if (error instanceof Error && (error as any).response?.data) {
+    yield put(fetchMusicFailure((error as any).response.data));
+  } else {
+    yield put(fetchMusicFailure("An unknown error occurred"));
+  }
   }
 }
 function* handleUpdateMusic(action: PayloadAction<Omit<Muisc, 'id'>>) {
@@ -43,7 +51,11 @@ function* handleUpdateMusic(action: PayloadAction<Omit<Muisc, 'id'>>) {
     const music: Muisc = yield call(updateMusic, action.payload);
     yield put(updateMusicSuccess(music));
   } catch (error) {
-    yield put(updateMusicFailure((error as Error).message));
+   if (error instanceof Error && (error as any).response?.data) {
+    yield put(fetchMusicFailure((error as any).response.data));
+  } else {
+    yield put(fetchMusicFailure("An unknown error occurred"));
+  }
   }
 }
 function* handleDeleteMusic(action: PayloadAction<string>) {
@@ -51,7 +63,11 @@ function* handleDeleteMusic(action: PayloadAction<string>) {
     const id: string = yield call(deleteMusic, action.payload);
     yield put(deleteMusicSuccess(id));
   } catch (error) {
-    yield put(deleteMusicFailure((error as Error).message));
+    if (error instanceof Error && (error as any).response?.data) {
+      yield put(fetchMusicFailure((error as any).response.data));
+    } else {
+      yield put(fetchMusicFailure('An unknown error occurred'));
+    }
   }
 }
 
