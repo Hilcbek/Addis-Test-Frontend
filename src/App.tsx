@@ -4,18 +4,13 @@ import MainOutlet from './components/MainOutlet';
 import { Home } from './pages/Home';
 import { Toaster } from 'react-hot-toast';
 import UpdateMusic from './pages/UpdateMuisc.tsx';
+import { LoaderComponent, ParentComponent } from './styles/AppStyles.ts';
 const CreateMusic = React.lazy(() => import('./pages/createMusic.tsx'));
 const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <Suspense
-        fallback={
-          <div className="w-full h-[90vh] flex items-center justify-center">
-            Loading...
-          </div>
-        }
-      >
+      <Suspense fallback={<LoaderComponent>Loading...</LoaderComponent>}>
         <MainOutlet />
       </Suspense>
     ),
@@ -23,13 +18,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: (
-          <Suspense
-            fallback={
-              <div className="w-full h-[90vh] flex items-center justify-center">
-                Loading...
-              </div>
-            }
-          >
+          <Suspense fallback={<LoaderComponent>Loading...</LoaderComponent>}>
             <Home />
           </Suspense>
         ),
@@ -37,13 +26,7 @@ const router = createBrowserRouter([
       {
         path: 'createMusic',
         element: (
-          <Suspense
-            fallback={
-              <div className="w-full h-[90vh] flex items-center justify-center">
-                Loading...
-              </div>
-            }
-          >
+          <Suspense fallback={<LoaderComponent>Loading...</LoaderComponent>}>
             <CreateMusic />
           </Suspense>
         ),
@@ -51,13 +34,7 @@ const router = createBrowserRouter([
       {
         path: '/updateMusic',
         element: (
-          <Suspense
-            fallback={
-              <div className="w-full h-[100vh] flex items-center justify-center">
-                Loading...
-              </div>
-            }
-          >
+          <Suspense fallback={<LoaderComponent>Loading...</LoaderComponent>}>
             <UpdateMusic />
           </Suspense>
         ),
@@ -67,10 +44,10 @@ const router = createBrowserRouter([
 ]);
 function App() {
   return (
-    <div className="w-full h-full font-SpaceMono px-10 sm:px-16 md:px-20 lg:px-28 xl:px-32">
+    <ParentComponent>
       <Toaster position="bottom-right" toastOptions={{ duration: 3000 }} />
       <RouterProvider router={router} />
-    </div>
+    </ParentComponent>
   );
 }
 
