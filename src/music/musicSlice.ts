@@ -29,8 +29,7 @@ export const musicSlice = createSlice({
       state.isLoading = false;
       state.isError = true;
     },
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    createMusicStart: (state, action: PayloadAction<Muisc>) => {
+    createMusicStart: (state) => {
       state.isLoading = true;
     },
     createMuiscSuccess: (state, action: PayloadAction<Muisc>) => {
@@ -44,8 +43,7 @@ export const musicSlice = createSlice({
       state.isLoading = false;
       toast.error(action.payload);
     },
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    updateMusicStart: (state, action: PayloadAction<Muisc>) => {
+    updateMusicStart: (state) => {
       state.isLoading = true;
     },
     updateMusicSuccess: (state, action: PayloadAction<Muisc>) => {
@@ -64,8 +62,7 @@ export const musicSlice = createSlice({
       state.isLoading = false;
       toast.error(action.payload);
     },
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    deleteMusicStart: (state, action: PayloadAction<string>) => {
+    deleteMusicStart: (state) => {
       state.isLoading = true;
     },
     deleteMusicSuccess: (state, action: PayloadAction<string | undefined>) => {
