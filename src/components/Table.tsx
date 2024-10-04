@@ -51,11 +51,12 @@ const TableComponent = ({ allMuiscs }: { allMuiscs: musicType[] }) => {
   };
 
   return (
-    <TableContainer width={'4xl'}>
-      <Table variant="simple">
+    <TableContainer width={'full'}>
+      <Table variant="striped">
         <TableCaption>All Muisc Lists!</TableCaption>
         <Thead>
           <Tr>
+            <Th></Th>
             <Th>Music Name</Th>
             <Th>Description</Th>
             <Th align="center">Genere</Th>
@@ -66,9 +67,10 @@ const TableComponent = ({ allMuiscs }: { allMuiscs: musicType[] }) => {
         <Tbody>
           {allMuiscs
             .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-            .map((music: musicType) => {
+            .map((music: musicType, index: number) => {
               return (
                 <Tr key={music._id}>
+                  <Td>{(page - 1) * itemsPerPage + index + 1}</Td>
                   <Td>{music.mname}</Td>
                   <Td>{music.desc}</Td>
                   <Td>{music.genere}</Td>
