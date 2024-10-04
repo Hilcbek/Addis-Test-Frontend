@@ -37,6 +37,13 @@ export const MainContainer = styled.div<MainContainerProps>`
     padding: 0px 18px;
   }
 `;
+export const LoaderContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 export const HeaderContainer = styled.h1`
   font-size: 30px;
   text-decoration: underline;
