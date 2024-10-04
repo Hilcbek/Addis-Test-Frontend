@@ -32,7 +32,9 @@ const TableComponent = ({ allMuiscs }: { allMuiscs: musicType[] }) => {
   };
   const dispatch: AppDispatch = useDispatch();
   const handleDelete = (id: string) => {
-    const response: boolean = confirm('Are you sure you want to delete');
+    const response: boolean = confirm(
+      'Are you sure? This action is irreversible!'
+    );
     if (response) {
       dispatch(deleteMusicStart(id));
       navigate('/');

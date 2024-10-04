@@ -34,7 +34,7 @@ const musicSchema = z.object({
     .min(1, { message: 'Music name must be at least 4 characters!' })
     .max(40, { message: 'Music name must not greater than 16 characters!' }),
   desc: z.string().min(1, { message: "Description can't be less than 1" }),
-  genere: z.enum(genereKeys),
+  genere: z.enum(genereKeys, { message: "genere can't be out the scope" }),
 });
 type formDataType = z.infer<typeof musicSchema>;
 
@@ -111,6 +111,12 @@ function CreateMusic() {
             </option>
           ))}
         </Select>
+        {errors.genere && (
+          <ErrorComponent>
+            <BiSolidErrorCircle color="crimson" />
+            <ErrorLabel>{errors.genere.message}</ErrorLabel>
+          </ErrorComponent>
+        )}
         <ButtonComponent
           type="submit"
           isSubmitting={isSubmitting}
