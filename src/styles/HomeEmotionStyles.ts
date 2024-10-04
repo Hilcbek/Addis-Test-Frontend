@@ -5,6 +5,7 @@ interface MainContainerProps {
 export const MainContainer = styled.div<MainContainerProps>`
   width: 100%;
   max-height: 91vh;
+  height: 100%;
   display: flex;
   ${({ isThereData }) =>
     isThereData
