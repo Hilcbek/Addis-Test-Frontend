@@ -28,10 +28,10 @@ function* handleFetchMuiscs() {
     yield put(fetchMusicSuccess(musics));
   } catch (error) {
     if (error instanceof Error && (error as any).response?.data) {
-    yield put(fetchMusicFailure((error as any).response.data));
-  } else {
-    yield put(fetchMusicFailure("An unknown error occurred"));
-  }
+      yield put(fetchMusicFailure((error as any).response.data));
+    } else {
+      yield put(fetchMusicFailure('An unknown error occurred'));
+    }
   }
 }
 function* handleCreateMusic(action: PayloadAction<Omit<Muisc, 'id'>>) {
@@ -39,11 +39,11 @@ function* handleCreateMusic(action: PayloadAction<Omit<Muisc, 'id'>>) {
     const music: Muisc = yield call(createMusic, action.payload);
     yield put(createMuiscSuccess(music));
   } catch (error) {
-   if (error instanceof Error && (error as any).response?.data) {
-    yield put(createMusicFailure((error as any).response.data));
-  } else {
-    yield put(createMusicFailure("An unknown error occurred"));
-  }
+    if (error instanceof Error && (error as any).response?.data) {
+      yield put(createMusicFailure((error as any).response.data));
+    } else {
+      yield put(createMusicFailure('An unknown error occurred'));
+    }
   }
 }
 function* handleUpdateMusic(action: PayloadAction<Omit<Muisc, 'id'>>) {
@@ -51,17 +51,17 @@ function* handleUpdateMusic(action: PayloadAction<Omit<Muisc, 'id'>>) {
     const music: Muisc = yield call(updateMusic, action.payload);
     yield put(updateMusicSuccess(music));
   } catch (error) {
-   if (error instanceof Error && (error as any).response?.data) {
-    yield put(updateMusicFailure((error as any).response.data));
-  } else {
-    yield put(updateMusicFailure("An unknown error occurred"));
-  }
+    if (error instanceof Error && (error as any).response?.data) {
+      yield put(updateMusicFailure((error as any).response.data));
+    } else {
+      yield put(updateMusicFailure('An unknown error occurred'));
+    }
   }
 }
 function* handleDeleteMusic(action: PayloadAction<string>) {
   try {
-    const id: string = yield call(deleteMusic, action.payload);
-    yield put(deleteMusicSuccess(id));
+    yield call(deleteMusic, action.payload);
+    yield put(deleteMusicSuccess(action.payload));
   } catch (error) {
     if (error instanceof Error && (error as any).response?.data) {
       yield put(deleteMusicFailure((error as any).response.data));
