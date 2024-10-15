@@ -18,6 +18,7 @@ export const musicSlice = createSlice({
   reducers: {
     fetchMusicStart: (state, action: PayloadAction<string>) => {
       state.isLoading = true;
+      console.log(action.payload);
     },
     fetchMusicSuccess: (state, action: PayloadAction<Muisc[]>) => {
       state.musics = action.payload;
