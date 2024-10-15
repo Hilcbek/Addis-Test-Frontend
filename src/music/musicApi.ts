@@ -2,8 +2,9 @@ import { Muisc } from '../types/type';
 import { baseURL } from '../utils/connection';
 
 export const fetchMusic = async (search: string): Promise<Muisc[]> => {
+  console.log('in fetch axios ', search);
   const response = await baseURL.get<Muisc[]>(`/music`, {
-    params: { search },
+    params: { search: search },
   });
   return response.data;
 };

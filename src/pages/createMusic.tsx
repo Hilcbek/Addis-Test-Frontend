@@ -55,13 +55,8 @@ function CreateMusic() {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const onSubmit: SubmitHandler<formDataType> = (data: formDataType) => {
-    try {
-      dispatch(createMusicStart(data));
-      navigate('/');
-    } catch (error) {
-      console.log('error', error);
-    }
-    console.log(data);
+    dispatch(createMusicStart(data));
+    navigate('/');
   };
   const mnameChange = watch('mname');
   const descChange = watch('desc');

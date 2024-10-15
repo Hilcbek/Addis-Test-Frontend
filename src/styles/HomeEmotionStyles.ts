@@ -48,7 +48,7 @@ export const HomeSubContainer = styled.div`
 export const MainTitleContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: end;
   padding: 10px;
   width: 100%;
 `;
@@ -62,14 +62,12 @@ export const InputSearchDiv = styled.div<dropSearchProp>`
   justify-content: start;
   gap: 20px;
   padding: 0px 20px;
+  transition: 1s all linear;
+  transform-origin: right;
   ${({ dropProp }) =>
     dropProp
-      ? `transform: translateY(0px);
-         opacity: 100;
-         visibility: visible;
-         transition: 1s all cubic-bezier(0.68, -0.55, 0.265, 1.55);`
-      : `opacity : 0; visibility : hidden;  transform: translateY(-100px);
-         transition: 1s all cubic-bezier(0.68, -0.55, 0.265, 1.55);`}
+      ? `width : 100%; visibility : visible;`
+      : `width : 0%; visibility : hidden;`}
 `;
 export const InputSearch = styled.input`
   border: none;

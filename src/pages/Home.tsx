@@ -20,14 +20,22 @@ export const Home = () => {
   let [search, setSearch] = useState<string>('');
   const { musics, isLoading } = useSelector((state: RootState) => state.music);
   useEffect(() => {
-    
     dispatch(fetchMusicStart(search));
   }, [dispatch, search]);
   let { searchDrop, closeSearch, openSearch } = useSearch();
   return (
     <MainContainer isThereData={musics?.length}>
+      <HeaderContainer>All Musics</HeaderContainer>
       <MainTitleContainer>
-        <HeaderContainer>All Musics</HeaderContainer>
+        <InputSearchDiv dropProp={searchDrop}>
+          <BiSearch size={30} />
+          <InputSearch
+            type="search"
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+            placeholder="Search music name..."
+          ></InputSearch>
+        </InputSearchDiv>
         {
           <>
             {searchDrop ? (
@@ -38,14 +46,7 @@ export const Home = () => {
           </>
         }
       </MainTitleContainer>
-      <InputSearchDiv dropProp={searchDrop}>
-        <BiSearch size={30} />
-        <InputSearch
-          onChange={(e) => setSearch(e.target.value)}
-          value={search}
-          placeholder="Search music name..."
-        ></InputSearch>
-      </InputSearchDiv>
+
       {isLoading ? (
         <LoaderContainer>Loading...</LoaderContainer>
       ) : musics?.length ? (

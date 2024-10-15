@@ -57,7 +57,7 @@ const TableComponent = ({ allMuiscs }: { allMuiscs: musicType[] }) => {
   };
 
   return (
-    <TableContainer width={'full'} style={{ marginTop: 20 }}>
+    <TableContainer width={'full'}>
       <Table variant="striped">
         <TableCaption>All Muisc Lists!</TableCaption>
         <Thead>
