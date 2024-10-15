@@ -25,7 +25,6 @@ import { PayloadAction } from '@reduxjs/toolkit';
 function* handleFetchMuiscs(action: PayloadAction<string>) {
   try {
     const musics: Muisc[] = yield call(fetchMusic, action.payload);
-    console.log('musics ', musics);
     yield put(fetchMusicSuccess(musics));
   } catch (error) {
     console.log('error', error);
