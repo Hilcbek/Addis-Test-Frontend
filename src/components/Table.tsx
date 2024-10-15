@@ -13,14 +13,10 @@ import {
   BiChevronLeft,
   BiChevronRight,
   BiEdit,
-  BiSearch,
 } from 'react-icons/bi';
 import { MdDelete } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import {
-  HomeSubContainer,
-  InputSearch,
-  InputSearchDiv,
   PagianationButtonContainer,
   PagianationContanier,
 } from '../styles/HomeEmotionStyles';
