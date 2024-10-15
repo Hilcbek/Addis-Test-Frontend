@@ -30,6 +30,7 @@ export const Home = () => {
         <InputSearchDiv dropProp={searchDrop}>
           <BiSearch size={30} />
           <InputSearch
+            autoFocus={searchDrop}
             type="search"
             onChange={(e) => setSearch(e.target.value)}
             value={search}
