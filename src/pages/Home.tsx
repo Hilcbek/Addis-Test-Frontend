@@ -1,5 +1,5 @@
 import TableComponent from '../components/Table';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../store/musicStore';
 import { fetchMusicStart } from '../music/musicSlice';
@@ -22,7 +22,14 @@ export const Home = () => {
   useEffect(() => {
     dispatch(fetchMusicStart(search));
   }, [dispatch, search]);
+  let inputRef = useRef<HTMLInputElement>(null);
+
   let { searchDrop, closeSearch, openSearch } = useSearch();
+  useEffect(() => {
+    if (searchDrop) {
+      inputRef.current?.focus();
+    }
+  }, [searchDrop]);
   return (
     <MainContainer isThereData={musics?.length}>
       <HeaderContainer>All Musics</HeaderContainer>
@@ -30,7 +37,7 @@ export const Home = () => {
         <InputSearchDiv dropProp={searchDrop}>
           <BiSearch size={30} />
           <InputSearch
-            autoFocus={searchDrop}
+            ref={inputRef}
             type="search"
             onChange={(e) => setSearch(e.target.value)}
             value={search}
