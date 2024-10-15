@@ -22,11 +22,13 @@ import {
 } from '../music/musicApi';
 import { PayloadAction } from '@reduxjs/toolkit';
 
-function* handleFetchMuiscs() {
+function* handleFetchMuiscs(action: PayloadAction<string>) {
   try {
-    const musics: Muisc[] = yield call(fetchMusic);
+    const musics: Muisc[] = yield call(fetchMusic, action.payload);
+    console.log('musics ', musics);
     yield put(fetchMusicSuccess(musics));
   } catch (error) {
+    console.log('error', error);
     if (error instanceof Error && (error as any).response?.data) {
       yield put(fetchMusicFailure((error as any).response.data));
     } else {

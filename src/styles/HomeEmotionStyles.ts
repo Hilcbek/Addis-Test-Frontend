@@ -2,11 +2,15 @@ import styled from '@emotion/styled';
 interface MainContainerProps {
   isThereData: number; // Change this to boolean if it's a boolean condition
 }
+interface dropSearchProp {
+  dropProp: boolean;
+}
 export const MainContainer = styled.div<MainContainerProps>`
   width: 100%;
   max-height: 91vh;
   height: 100%;
   display: flex;
+  gap: 20px;
   ${({ isThereData }) =>
     isThereData
       ? `
@@ -36,6 +40,42 @@ export const MainContainer = styled.div<MainContainerProps>`
   @media (max-width: 1536px) {
     padding: 0px 18px;
   }
+`;
+export const HomeSubContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+export const MainTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+`;
+export const InputSearchDiv = styled.div<dropSearchProp>`
+  width: 100%;
+  border: 1px solid #ccc;
+  outline: none;
+  border-radius: 30px;
+  align-items: center;
+  display: flex;
+  justify-content: start;
+  gap: 20px;
+  padding: 0px 20px;
+  ${({ dropProp }) =>
+    dropProp
+      ? `transform: translateY(0px);
+         opacity: 100;
+         visibility: visible;
+         transition: 1s all cubic-bezier(0.68, -0.55, 0.265, 1.55);`
+      : `opacity : 0; visibility : hidden;  transform: translateY(-100px);
+         transition: 1s all cubic-bezier(0.68, -0.55, 0.265, 1.55);`}
+`;
+export const InputSearch = styled.input`
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 20px 0px;
 `;
 export const LoaderContainer = styled.div`
   width: 100%;

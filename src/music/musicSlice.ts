@@ -16,7 +16,7 @@ export const musicSlice = createSlice({
   name: 'music',
   initialState,
   reducers: {
-    fetchMusicStart: (state) => {
+    fetchMusicStart: (state, action: PayloadAction<string>) => {
       state.isLoading = true;
     },
     fetchMusicSuccess: (state, action: PayloadAction<Muisc[]>) => {
@@ -40,7 +40,7 @@ export const musicSlice = createSlice({
       toast.success('Muisc created successfully!');
     },
     createMusicFailure: (state, action: PayloadAction<string>) => {
-      state.isError = false;
+      state.isError = true;
       state.isLoading = false;
       toast.error(action.payload);
     },
@@ -60,7 +60,7 @@ export const musicSlice = createSlice({
       toast.success('Muisc udpated successfully!');
     },
     updateMusicFailure: (state, action: PayloadAction<string>) => {
-      state.isError = false;
+      state.isError = true;
       state.isLoading = false;
       toast.error(action.payload);
     },
@@ -78,7 +78,7 @@ export const musicSlice = createSlice({
       toast.success('Muisc deleted successfully!');
     },
     deleteMusicFailure: (state, action: PayloadAction<string>) => {
-      state.isError = false;
+      state.isError = true;
       state.isLoading = false;
       toast.error(action.payload);
     },

@@ -1,27 +1,59 @@
 import TableComponent from '../components/Table';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../store/musicStore';
 import { fetchMusicStart } from '../music/musicSlice';
-import { HeaderContainer, LoaderContainer, MainContainer, TableContainer } from '../styles/HomeEmotionStyles';
+import {
+  HeaderContainer,
+  InputSearch,
+  InputSearchDiv,
+  LoaderContainer,
+  MainContainer,
+  MainTitleContainer,
+  TableContainer,
+} from '../styles/HomeEmotionStyles';
+import { BiSearch } from 'react-icons/bi';
+import useSearch from '../zustand/Search-drop';
+import { MdClose } from 'react-icons/md';
 export const Home = () => {
   const dispatch: AppDispatch = useDispatch();
+  let [search, setSearch] = useState<string>('');
   const { musics, isLoading } = useSelector((state: RootState) => state.music);
   useEffect(() => {
-    dispatch(fetchMusicStart());
-  }, [dispatch]);
-
+    
+    dispatch(fetchMusicStart(search));
+  }, [dispatch, search]);
+  let { searchDrop, closeSearch, openSearch } = useSearch();
   return (
     <MainContainer isThereData={musics?.length}>
+      <MainTitleContainer>
+        <HeaderContainer>All Musics</HeaderContainer>
+        {
+          <>
+            {searchDrop ? (
+              <MdClose size={30} onClick={() => closeSearch()} />
+            ) : (
+              <BiSearch size={30} onClick={() => openSearch()} />
+            )}
+          </>
+        }
+      </MainTitleContainer>
+      <InputSearchDiv dropProp={searchDrop}>
+        <BiSearch size={30} />
+        <InputSearch
+          onChange={(e) => setSearch(e.target.value)}
+          value={search}
+          placeholder="Search music name..."
+        ></InputSearch>
+      </InputSearchDiv>
       {isLoading ? (
         <LoaderContainer>Loading...</LoaderContainer>
       ) : musics?.length ? (
         <TableContainer>
-          <HeaderContainer>All Musics</HeaderContainer>
           <TableComponent allMuiscs={musics} />
         </TableContainer>
       ) : (
-        <h1>No data found! adds some!👋</h1>
+        <h1>No data found!</h1>
       )}
     </MainContainer>
   );

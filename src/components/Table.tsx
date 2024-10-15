@@ -9,10 +9,18 @@ import {
   TableContainer,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { BiChevronLeft, BiChevronRight, BiEdit } from 'react-icons/bi';
+import {
+  BiChevronLeft,
+  BiChevronRight,
+  BiEdit,
+  BiSearch,
+} from 'react-icons/bi';
 import { MdDelete } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import {
+  HomeSubContainer,
+  InputSearch,
+  InputSearchDiv,
   PagianationButtonContainer,
   PagianationContanier,
 } from '../styles/HomeEmotionStyles';
@@ -53,7 +61,7 @@ const TableComponent = ({ allMuiscs }: { allMuiscs: musicType[] }) => {
   };
 
   return (
-    <TableContainer width={'full'}>
+    <TableContainer width={'full'} style={{ marginTop: 20 }}>
       <Table variant="striped">
         <TableCaption>All Muisc Lists!</TableCaption>
         <Thead>
